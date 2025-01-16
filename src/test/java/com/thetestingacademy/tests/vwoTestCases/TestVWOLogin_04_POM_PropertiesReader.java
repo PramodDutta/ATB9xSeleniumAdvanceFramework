@@ -1,14 +1,18 @@
 package com.thetestingacademy.tests.vwoTestCases;
-import com.thetestingacademy.pages.pageObjectModel.vwo.DashBoardPage;
-import com.thetestingacademy.pages.pageObjectModel.vwo.LoginPage;
+
+import com.thetestingacademy.pages.pageObjectModel.vwo.normal.DashBoardPage;
+import com.thetestingacademy.pages.pageObjectModel.vwo.normal.LoginPage;
+import com.thetestingacademy.utils.PropertiesReader;
 import io.qameta.allure.Description;
 import io.qameta.allure.Owner;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import static org.assertj.core.api.Assertions.*;
-public class TestVWOLogin_POM {
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+public class TestVWOLogin_04_POM_PropertiesReader {
 
 
     @Owner("PRAMOD")
@@ -18,10 +22,10 @@ public class TestVWOLogin_POM {
         WebDriver driver = new EdgeDriver();
 
         LoginPage loginPage_VWO = new LoginPage(driver);
-        String error_msg = loginPage_VWO.loginToVWOLoginInvalidCreds("admin@gmail.com","123");
+        String error_msg = loginPage_VWO.loginToVWOLoginInvalidCreds(PropertiesReader.readKey("invalid_username"),PropertiesReader.readKey("invalid_password"));
 
         assertThat(error_msg).isNotBlank().isNotNull().isNotEmpty();
-        Assert.assertEquals(error_msg,"Your email, password, IP address or location did not match");
+        Assert.assertEquals(error_msg,PropertiesReader.readKey("error_message"));
 
 
     }
@@ -33,13 +37,15 @@ public class TestVWOLogin_POM {
         WebDriver driver = new EdgeDriver();
 
         LoginPage loginPage_VWO = new LoginPage(driver);
-        loginPage_VWO.loginToVWOLoginValidCreds("contact+aug@thetestingacademy.com","TtxkgQ!s$rJBk85");
+        loginPage_VWO.loginToVWOLoginValidCreds(PropertiesReader.readKey("username"),PropertiesReader.readKey("password"));
+
         DashBoardPage dashBoardPage  = new DashBoardPage(driver);
         String usernameLoggedIn = dashBoardPage.loggedInUserName();
 
 
         assertThat(usernameLoggedIn).isNotBlank().isNotNull().isNotEmpty();
-        Assert.assertEquals(usernameLoggedIn,"Aman");
+        Assert.assertEquals(usernameLoggedIn,PropertiesReader.readKey("expected_username"));
+
 
 
     }

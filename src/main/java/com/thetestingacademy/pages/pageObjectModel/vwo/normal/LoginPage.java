@@ -1,7 +1,8 @@
-package com.thetestingacademy.pages.pageObjectModel.vwo;
+package com.thetestingacademy.pages.pageObjectModel.vwo.normal;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import com.thetestingacademy.utils.PropertiesReader;
 
 public class LoginPage {
 
@@ -29,7 +30,7 @@ public class LoginPage {
     // Step 2 - Page Actions
 
     public String loginToVWOLoginInvalidCreds(String user, String pwd) {
-        driver.get("https://app.vwo.com");
+        driver.get(PropertiesReader.readKey("url"));
         driver.findElement(username).sendKeys(user);
         driver.findElement(password).sendKeys(pwd);
         driver.findElement(signButton).click();
@@ -45,7 +46,7 @@ public class LoginPage {
 
     public void loginToVWOLoginValidCreds(String user, String pwd) {
 
-        driver.get("https://app.vwo.com");
+        driver.get(PropertiesReader.readKey("url"));
         driver.findElement(username).sendKeys(user);
         driver.findElement(password).sendKeys(pwd);
         driver.findElement(signButton).click();

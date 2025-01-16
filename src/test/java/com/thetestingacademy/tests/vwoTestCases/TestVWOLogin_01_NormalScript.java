@@ -9,7 +9,7 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class TestVWOLogin {
+public class TestVWOLogin_01_NormalScript {
 
     @Description("Verify that with invalid email, pass, error message is shown on the app.vwo.com")
     @Test
