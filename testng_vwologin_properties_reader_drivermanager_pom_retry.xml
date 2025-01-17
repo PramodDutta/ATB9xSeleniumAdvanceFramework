@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+
+    <listeners>
+        <listener class-name="com.thetestingacademy.listeners.RetryListener"/>
+    </listeners>
+
+    <test verbose="2" preserve-order="true" name="ATB9xSeleniumAdvanceFramework">
+        <classes>
+            <class name="com.thetestingacademy.tests.vwoTestCases.TestVWOLogin_07_Improved_POM_PropertiesReader_DriverManager_Retry">
+            </class>
+        </classes>
+    </test>
+</suite>
